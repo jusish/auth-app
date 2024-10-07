@@ -1,0 +1,84 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Auth API",
+      "description": "API documentation for authentication system",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/api/auth/signup": {
+        "post": {
+          "summary": "Signup a new user",
+          "tags": ["Auth"],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "User registered successfully"
+            }
+          }
+        }
+      },
+      "/api/auth/login": {
+        "post": {
+          "summary": "Login a user",
+          "tags": ["Auth"],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserLogin"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "User authenticated successfully"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "User": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string",
+              "enum": ["user", "admin"]
+            }
+          }
+        },
+        "UserLogin": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+  
